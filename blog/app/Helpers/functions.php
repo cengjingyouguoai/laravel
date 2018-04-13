@@ -18,7 +18,7 @@ function successJump($url,$message,$timeJump = 2)
 	       'time' => $timeJump
 	];
 
-	return view ('common.jump',$data);
+    return view('common.jump')->with($data);
 }
 
 /**
@@ -36,5 +36,5 @@ function errorJump($url,$message,$timeJump = 2)
 	       'time' => $timeJump
 	];
 
-	return view ('common.jump',$data);
+    return view('common.jump')->with($data);
 }
