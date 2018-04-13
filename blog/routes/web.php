@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Admin\Login'],function(){
     Route::get('admin/login/login', 'LoginController@login');
 
     //登录判断
-    //Route::post('admin/login_deal','LoginController@loginDeal');
+    Route::post('admin/login/login_deal','LoginController@loginDeal');
 
     //后台退出
     //Route::get('admin/login_out','LoginController@loginOut');
@@ -34,6 +34,11 @@ Route::group(['namespace' => 'Admin\Index'],function(){
     Route::get('admin/index/index','IndexController@index');
     //后台首页2
     Route::get('admin/index/index_2','IndexController@indexTwo');
-
-
+});
+//后台分类
+Route::group(['namespace' => 'Admin\Type'],function(){
+    //后台分类列表
+    Route::get('admin/type/type_list','TypeController@typeList');
+    //后台分类编辑
+    Route::get('admin/type/type_edit','TypeController@typeEdit');
 });
