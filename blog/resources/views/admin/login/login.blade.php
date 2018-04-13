@@ -29,7 +29,7 @@
         </div>
         <h3>欢迎登录</h3>
 
-        <form class="m-t" role="form" action="{{ url('admin/login_deal') }}" method="post">
+        <form class="m-t" role="form" action="{{ url('admin/login/login_deal') }}" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" name="username" placeholder="用户名" required="">
             </div>
