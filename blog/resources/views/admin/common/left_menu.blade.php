@@ -30,19 +30,19 @@
 
             </li>
             <li>
-                <a href="{{ url('admin/index') }}"><i class="fa fa-th-large"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span></a>
+                <a href="{{ url('admin/index/index') }}"><i class="fa fa-th-large"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ url('admin/index_2') }}">首页</a>
+                    <li><a href="{{ url('admin/index/index_2') }}">首页</a>
                     </li>
 
                 </ul>
             </li>
             <li>
-                <a href=""><i class="fa fa fa-globe"></i> <span class="nav-label">轮播图管理</span><span class="fa arrow"></span></a>
+                <a href=""><i class="fa fa fa-globe"></i> <span class="nav-label">分类管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="">轮播图列表</a>
+                    <li><a href="{{ url('admin/type/type_list') }}">分类列表</a>
                     </li>
-                    <li><a href="">轮播图增加</a>
+                    <li><a href="{{ url('admin/type/type_edit') }}">分类增加</a>
                     </li>
                 </ul>
             </li>
