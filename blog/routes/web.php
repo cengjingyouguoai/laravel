@@ -29,14 +29,14 @@ Route::group(['namespace' => 'Admin\Login'],function(){
 
 });
 //后台首页
-Route::group(['namespace' => 'Admin\Index'],function(){
+Route::group(['namespace' => 'Admin\Index','middleware' => 'check.login'],function(){
     //后台首页
     Route::get('admin/index/index','IndexController@index');
     //后台首页2
     Route::get('admin/index/index_2','IndexController@indexTwo');
 });
 //后台分类
-Route::group(['namespace' => 'Admin\Type'],function(){
+Route::group(['namespace' => 'Admin\Type','middleware' => 'check.login'],function(){
     //后台分类列表
     Route::get('admin/type/type_list','TypeController@typeList');
     //后台分类编辑
