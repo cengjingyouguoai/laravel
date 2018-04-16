@@ -45,4 +45,10 @@ Route::group(['namespace' => 'Admin\Type','middleware' => 'check.login'],functio
     Route::post('admin/type/type_edit_deal','TypeController@typeEditDeal');
     //修改显示状态
     Route::get('admin/type/update_status','TypeController@updateStatus');
+    //修改排序
+    Route::get('admin/type/update_sort','TypeController@updateSort');
+    //修改名称
+    Route::get('admin/type/update_name','TypeController@updateName');
+    //删除
+    Route::get('admin/type/del_type','TypeController@delType');
 });
