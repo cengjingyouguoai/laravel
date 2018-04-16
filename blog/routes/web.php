@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Admin\Index','middleware' => 'check.login'],functi
 Route::group(['namespace' => 'Admin\Type','middleware' => 'check.login'],function(){
     //后台分类列表
     Route::get('admin/type/type_list','TypeController@typeList');
-    //后台分类编辑
+    //后台分类编辑页面
     Route::get('admin/type/type_edit','TypeController@typeEdit');
+    //编辑处理
+    Route::post('admin/type/type_edit_deal','TypeController@typeEditDeal');
 });
