@@ -47,8 +47,8 @@
                                     @foreach($data as $val)
                                         <tr>
                                             <td>{{ $val['type_id'] }}</td>
-                                            <td>{{ $val['type_name'] }}</td>
-                                            <td>{{ $val['type_sort'] }}</td>
+                                            <td><input type="text" class="form-control names" value="{{ $val['type_name'] }}" id="{{ $val['type_id'] }}"></td>
+                                            <td><input type="text" class="form-control sorts"  id="{{ $val['type_id'] }}" value="{{ $val['type_sort'] }}"  size="1"></td>
                                             @if ($val['is_show'] == 1)
                                             <td><a class="btn btn-primary btn-rounded shows" href="javascript:void (0)" id="{{ $val['type_id'] }}" status="{{ $val['is_show'] }}">显示</a></td>
                                             @else
@@ -62,8 +62,7 @@
                                             <td>{{ date('Y-m-d H:i:s',$val['create_at']) }}</td>
                                             <td>{{ date('Y-m-d H:i:s',$val['update_at']) }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm del" >删除</button>
-                                                <button type="button" class="btn btn-primary btn-sm mod" >修改</button>
+                                                <button type="button" class="btn btn-primary btn-sm del" id="{{ $val['type_id'] }}">删除</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -115,6 +114,7 @@
 </html>
 <script>
     $(document).ready(function () {
+        //改为不显示
         $('.shows').click(function () {
             var _this = $(this);
             var status = _this.attr('status');
@@ -132,7 +132,7 @@
                 }
             })
         })
-
+        //改为显示
         $('.unshows').click(function () {
             var _this = $(this);
             var status = _this.attr('status');
@@ -149,6 +149,76 @@
                     }
                 }
             })
+        })
+        //排序
+        $('.sorts').blur(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
+            var val = _this.val();
+            $.ajax({
+                type:'GET',
+                data:'id='+id+'&val='+val,
+                url:'{{ url("admin/type/update_sort") }}',
+                dataType:'JSON',
+                success:function (msg) {
+                    if (msg.code == 200) {
+                        alert(msg.msg);
+                        window.location.href = "{{ url('admin/type/type_list') }}";
+                    } else if(msg.code == 300) {
+                        alert(msg.msg);
+                        window.location.href = "{{ url('admin/type/type_list') }}";
+                    } else {
+                        alert(msg.msg);
+                        window.location.href = "{{ url('admin/type/type_list') }}";
+                    }
+                }
+            })
+        })
+        //名称
+        $('.names').blur(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
+            var val = _this.val();
+            $.ajax({
+                type:'GET',
+                data:'id='+id+'&val='+val,
+                url:"{{ url('admin/type/update_name') }}",
+                dataType:'JSON',
+                success:function (msg) {
+                    if (msg.code == 200) {
+                        alert(msg.msg);
+                        window.location.href = "{{ url('admin/type/type_list') }}";
+                    } else if(msg.code == 300) {
+                        alert(msg.msg);
+                        window.location.href = "{{ url('admin/type/type_list') }}";
+                    } else {
+                        alert(msg.msg);
+                        window.location.href = "{{ url('admin/type/type_list') }}";
+                    }
+                }
+            })
+        })
+        //修改
+        $('.del').click(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
+            if (window.confirm('您确定要删除吗?')) {
+                $.ajax({
+                    type:'GET',
+                    data:'id='+id,
+                    url:'{{ url("admin/type/del_type") }}',
+                    dataType:'JSON',
+                    success:function (msg) {
+                        if (msg.code == 200) {
+                            alert('删除成功');
+                            window.location.href = "{{ url('admin/type/type_list') }}";
+                        } else {
+                            alert('删除失败');
+                            window.location.href = "{{ url('admin/type/type_list') }}";
+                        }
+                    }
+                })
+            }
         })
     })
 </script>
