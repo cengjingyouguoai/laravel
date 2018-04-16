@@ -31,10 +31,22 @@ class Type extends Model
         }
     }
     /**
-     * 修改是否显示
+     * 修改
      */
     public function updateStatus($id,$data)
     {
-        DB::table($this->table)->where(['type_id' => $id])->update($data);
+       return DB::table($this->table)->where(['type_id' => $id])->update($data);
+    }
+    /**
+     * 查询排序是否存在
+     */
+    public function getOneData($sort)
+    {
+          $result =Type::where(['is_show' => 1,'is_delete' => 0,'type_sort' => $sort])->first();
+          if ($result) {
+              return $result->toArray();
+          } else {
+              return $result;
+          }
     }
 }
