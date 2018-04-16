@@ -13,7 +13,9 @@ class TypeController extends Controller
      */
     public function typeList()
     {
-        return view('admin.type.type_list');
+        $typeModel = new Type();
+        $data = $typeModel->getData();
+        return view('admin.type.type_list',['data' => $data]);
     }
     /**
      * 分类编辑页面
@@ -52,7 +54,25 @@ class TypeController extends Controller
         } else {
             return errorJump('admin/type/type_edit','编辑失败');
         }
-
+    }
+    /**
+     * 修改显示
+     */
+    public function updateStatus(Request $request)
+    {
+        $id = intval($request->input('id'));
+        $status = intval($request->input('status'));
+        $typeModel = new Type();
+        if ($status == 1) {
+            $result = $typeModel->updateStatus($id,['is_show' => 0]);
+        } else {
+            $result = $typeModel->updateStatus($id,['is_show' => 1]);
+        }
+        if ($result) {
+            return json_encode(['code' => 200]);
+        } else {
+            return json_encode(['code' => 500]);
+        }
     }
 
 }
