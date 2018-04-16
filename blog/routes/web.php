@@ -43,4 +43,6 @@ Route::group(['namespace' => 'Admin\Type','middleware' => 'check.login'],functio
     Route::get('admin/type/type_edit','TypeController@typeEdit');
     //编辑处理
     Route::post('admin/type/type_edit_deal','TypeController@typeEditDeal');
+    //修改显示状态
+    Route::get('admin/type/update_status','TypeController@updateStatus');
 });
