@@ -49,4 +49,17 @@ class Type extends Model
               return $result;
           }
     }
+
+    /**
+     * 查询分类
+     */
+    public function getTypeList()
+    {
+        $result = Type::where(['is_show' => 1,'is_delete' => 0])->get();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            return $result;
+        }
+    }
 }
