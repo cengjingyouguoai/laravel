@@ -57,7 +57,7 @@
                                             @if ($val['is_delete'] == 0)
                                             <td>未删除</td>
                                             @else
-                                            <td>删除</td>
+                                            <td>已删除</td>
                                             @endif
                                             <td>{{ date('Y-m-d H:i:s',$val['create_at']) }}</td>
                                             <td>{{ date('Y-m-d H:i:s',$val['update_at']) }}</td>
