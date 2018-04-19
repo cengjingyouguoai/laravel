@@ -52,3 +52,10 @@ Route::group(['namespace' => 'Admin\Type','middleware' => 'check.login'],functio
     //删除
     Route::get('admin/type/del_type','TypeController@delType');
 });
+//后台文章
+Route::group(['namespace' => 'Admin\Article','middleware' => 'check.login'],function(){
+    //后台分类列表
+    Route::get('admin/article/article_list','ArticleController@articleList');
+    //文章增加页面
+    Route::get('admin/article/add_article','ArticleController@addArticle');
+});
