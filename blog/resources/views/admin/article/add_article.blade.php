@@ -32,20 +32,19 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form method="get" class="form-horizontal">
+                            <form method="post" class="form-horizontal" action="{{ url('admin/article/add_article_deal') }}" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章标题</label>
-
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="title">
                                     </div>
-                                </div>
+                                </div>{{ csrf_field() }}
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章分类</label>
 
                                     <div class="col-sm-10">
-                                        <select class="form-control m-b" name="account">
+                                        <select class="form-control m-b" name="type">
                                             <option>请选择</option>
                                             @foreach($data as $key => $val)
                                                 <option value="{{ $val['type_id'] }}">{{ $val['type_name'] }}</option>
@@ -57,7 +56,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章图片</label>
                                     <div class="col-sm-10">
-                                        <input type="file" class="form-control" >
+                                        <input type="file" class="form-control" name="photo">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -65,7 +64,7 @@
                                     <label class="col-sm-2 control-label">文章排序</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="sort">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -73,7 +72,7 @@
                                     <label class="col-sm-2 control-label">文章内容</label>
 
                                     <div class="col-sm-10">
-                                        <textarea name="" id="editor" style="width:1024px;height:500px;"></textarea>
+                                        <textarea name="article" id="editor" style="width:1024px;height:500px;" ></textarea>
                                     </div>
                                 </div>
 
@@ -95,46 +94,6 @@
 
 
 </div>
-<div id="modal-form" class="modal fade" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-6 b-r">
-                        <h3 class="m-t-none m-b">登录</h3>
-
-                        <p>欢迎登录本站(⊙o⊙)</p>
-
-                        <form role="form">
-                            <div class="form-group">
-                                <label>用户名：</label>
-                                <input type="email" placeholder="请输入用户名" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>密码：</label>
-                                <input type="password" placeholder="请输入密码" class="form-control">
-                            </div>
-                            <div>
-                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>登录</strong>
-                                </button>
-                                <label>
-                                    <input type="checkbox" class="i-checks">自动登录</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4>还不是会员？</h4>
-                        <p>您可以注册一个账户</p>
-                        <p class="text-center">
-                            <a href="form_basic.html"><i class="fa fa-sign-in big-icon"></i></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Mainly scripts -->
 <script src=" {{ URL::asset('admin/js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ URL::asset('admin/js/bootstrap.min.js?v=3.4.0') }}"></script>
