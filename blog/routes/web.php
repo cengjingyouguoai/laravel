@@ -54,8 +54,18 @@ Route::group(['namespace' => 'Admin\Type','middleware' => 'check.login'],functio
 });
 //后台文章
 Route::group(['namespace' => 'Admin\Article','middleware' => 'check.login'],function(){
-    //后台分类列表
+    //后台文章列表
     Route::get('admin/article/article_list','ArticleController@articleList');
     //文章增加页面
     Route::get('admin/article/add_article','ArticleController@addArticle');
+    //增加文章处理
+    Route::post('admin/article/add_article_deal','ArticleController@addArticleDeal');
+    //点击标题查看文章
+    Route::get('admin/article/article_details','ArticleController@articleDetails');
+    //发表文章
+    Route::get('admin/article/article_publish','ArticleController@articlePublish');
+    //删除文章
+    Route::get('admin/article/article_delete','ArticleController@articleDelete');
+    //恢复文章
+    Route::get('admin/article/article_regain','ArticleController@articleRegain');
 });
