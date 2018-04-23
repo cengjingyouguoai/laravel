@@ -49,7 +49,7 @@
             <li>
                 <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">文章管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="">文章列表</a>
+                    <li><a href="{{ url('admin/article/article_list') }}">文章列表</a>
                     </li>
                     <li><a href="{{ url('admin/article/add_article') }}">文章增加</a>
                     </li>
