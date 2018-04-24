@@ -51,6 +51,11 @@ class ArticleController extends Controller
                 $sort = intval($request->input('sort'));//排序
                 $article = trim($request->input('article'));//文章内容
                 $photo = $request->file('photo');
+                $extension = $photo->getClientOriginalExtension();
+                $extensions = ['jpg','png','gif','jpeg'];
+                if (!in_array($extension,$extensions)) {
+                    return errorJump('admin/article/add_article','图片格式不正确');
+                }
                 $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
                 $file_path =public_path('article/images');
                 $file = '/thumbnail-';
@@ -82,6 +87,11 @@ class ArticleController extends Controller
                 $sort = intval($request->input('sort'));//排序
                 $article = trim($request->input('article'));//文章内容
                 $photo = $request->file('photo');
+                $extension = $photo->getClientOriginalExtension();
+                $extensions = ['jpg','png','gif','jpeg'];
+                if (!in_array($extension,$extensions)) {
+                    return errorJump('admin/article/add_article','图片格式不正确');
+                }
                 $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
                 $file_path =public_path('article/images');
                 $file = '/thumbnail-';
@@ -109,6 +119,10 @@ class ArticleController extends Controller
                 $article = trim($request->input('article'));//文章内容
                 $photo = trim($request->input('photos'));
                 $extension = pathinfo($photo)['extension'];
+                $extensions = ['jpg','png','gif','jpeg'];
+                if (!in_array($extension,$extensions)) {
+                    return errorJump('admin/article/article_list','图片格式不正确');
+                }
                 $file_name = uniqid().'.'.$extension;
                 $file_path =public_path('article/images');
                 $file = '/thumbnail-';
