@@ -56,9 +56,9 @@
                 </ul>
             </li>
            <li>
-                <a href=""><i class="fa fa-envelope"></i> <span class="nav-label">订单列表 </span><span class="fa arrow"></span></a>
+                <a href=""><i class="fa fa-envelope"></i> <span class="nav-label">管理员列表 </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="">个人认养订单</a>
+                    <li><a href="{{ url('admin/admin/admin_list') }}">管理员列表</a>
                     </li>
                 </ul>
             </li>
