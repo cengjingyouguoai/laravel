@@ -5,7 +5,7 @@
                 <span class="m-r-sm text-muted welcome-message"><a href="{{ url('admin/index') }}" title="返回首页"><i class="fa fa-home"></i></a>欢迎登录后台</span>
             </li>
             <li>
-                <a href="{{ url('admin/login_out') }}">
+                <a href="{{ url('admin/lgoin/login_out') }}">
                     <i class="fa fa-sign-out"></i> 退出
                 </a>
             </li>
