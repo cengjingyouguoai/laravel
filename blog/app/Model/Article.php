@@ -24,9 +24,21 @@ class Article extends Model
     {
         return DB::table($this->table)
             ->join('type','article.article_type','=','type.type_id')
-            ->select('article.*','type.type_name')
+            ->select('article.*','type.type_name','type.type_id')
             ->where(['type.is_show' => 1,'type.is_delete' => 0])
             ->paginate(15);
+    }
+
+    /**
+     * 后台查询单条文章
+     */
+    public function getOneData($id)
+    {
+        return Article::join('type','article.article_type','=','type.type_id')
+            ->select('article.*','type.type_name','type.type_id')
+            ->where(['type.is_show' => 1,'type.is_delete' => 0,'article_id' => $id])
+            ->first()
+            ->toArray();
     }
 
     /**
