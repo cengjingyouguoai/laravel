@@ -46,7 +46,7 @@ class Article extends Model
      */
     public function getArticleDetails($article_id)
     {
-        $result =Article::first();
+        $result =Article::where(['article_id' => $article_id])->first();
         if ($result) {
             return $result->toArray();
         } else {
