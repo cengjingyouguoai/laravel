@@ -21,8 +21,15 @@ class LoginController extends Controller
     public function loginOut(Request $request)
     {
         $request->session()->forget('username');
-        if (!$request->session()->exists('username')) {
-            return  successJump('admin/lgoin/login');
+        $adminId = $request->session()->get('admin_id');
+        $adminModel = new Admin;
+        $data = [
+          'leave_time' => time(),
+        ];
+        $adminModel->updateData($data,$adminId);
+        $request->session()->forget('username');
+        if (!$request->session()->exists('admin_id')) {
+            return  successJump('admin/login/login','已经退出');
         }
     }
 
@@ -36,7 +43,14 @@ class LoginController extends Controller
         $adminModel = new Admin;
         $result = $adminModel->checkLogin($username,md5($password));
         if ($result) {
+            $ip = $request->getClientIp();
+            $data = [
+                'login_ip' => $ip,
+                'login_time' => time(),
+            ];
+            $adminModel->updateData($data,$result['admin_id']);
             $request->session()->put('username',$username);
+            $request->session()->put('admin_id',$result['admin_id']);
             return  successJump('admin/index/index','登录成功');
         } else {
             return  errorJump('admin/login/login','登录失败');
