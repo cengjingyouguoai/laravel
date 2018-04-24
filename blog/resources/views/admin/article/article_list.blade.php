@@ -55,6 +55,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach($data as $val)
+                                            <tr>
                                         <td>{{ $val->article_id }}</td>
                                         <td><a href="{{ url('admin/article/article_details') }}?article_id={{ $val->article_id }}">{{ $val->article_title }}</a></td>
                                         <td>{{ $val->type_name }}</td>
@@ -74,13 +75,14 @@
                                         <td>{{ date('Y-m-d H:i:s',$val->create_at) }}</td>
                                         <td>{{ date('Y-m-d H:i:s',$val->update_at) }}</td>
                                         <td>
-                                            <button data-toggle="button" class="btn btn-primary btn-outline" type="button">修改</button>
+                                            <button data-toggle="button" class="btn btn-primary btn-outline update" type="button" id="{{ $val->article_id }}">修改</button>
                                             @if ($val->is_delete == 1)
                                                <button type="button" data-toggle="button" class="btn btn-primary btn-outline regain " id="{{ $val->article_id }}">恢复</button>
                                                 @else
                                                 <button data-toggle="button" class="btn btn-primary btn-outline del" type="button" id="{{ $val->article_id }}">删除</button>
                                             @endif
                                         </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -155,6 +157,12 @@
             var id = _this.attr('id');
             window.location.href = "{{ url('admin/article/article_regain') }}?id="+id;
         });
+        //修改
+        $('.update').click(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
+            window.location.href = "{{ url('admin/article/add_article') }}?id="+id;
+        })
     })
 </script>
 
