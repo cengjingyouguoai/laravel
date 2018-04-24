@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章标题</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="title">
+                                        <input type="text" class="form-control" name="title"  @if(!empty($datas)) value=" {{ $datas['article_title'] }}"@endif >
                                     </div>
                                 </div>{{ csrf_field() }}
                                 <div class="hr-line-dashed"></div>
@@ -47,8 +47,14 @@
                                         <select class="form-control m-b" name="type">
                                             <option>请选择</option>
                                             @foreach($data as $key => $val)
-                                                <option value="{{ $val['type_id'] }}">{{ $val['type_name'] }}</option>
-                                                @endforeach
+                                                @if(!empty($datas))
+                                                @if($datas['type_id'] == $val['type_id'])
+                                                    @endif
+                                            <option value="{{ $val['type_id'] }}" selected>{{ $val['type_name'] }}</option>
+                                             @else
+                                             <option value="{{ $val['type_id'] }}">{{ $val['type_name'] }}</option>
+                                             @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -56,15 +62,21 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章图片</label>
                                     <div class="col-sm-10">
-                                        <input type="file" class="form-control" name="photo">
+                                        <input type="file" class="form-control" name="photo" >
+                                        @if(!empty($datas))
+                                            <input type="hidden" name="photos" value="{{ $datas['article_img'] }}">
+                                        @endif
+                                        <img @if(!empty($datas))src="/{{ $datas['article_img'] }}" @else src="" @endif alt="" style="width: 200px; height: 200px">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章排序</label>
-
+                                            @if ($article_id != 0)
+                                        <input type="hidden" value="{{ $article_id }}" name="article_id">
+                                            @endif
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="sort">
+                                        <input type="text" class="form-control" name="sort" @if(!empty($datas)) value=" {{ $datas['article_sort'] }} "@endif>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -72,7 +84,7 @@
                                     <label class="col-sm-2 control-label">文章内容</label>
 
                                     <div class="col-sm-10">
-                                        <textarea name="article" id="editor" style="width:1024px;height:500px;" ></textarea>
+                                        <textarea name="article" id="editor" style="width:1024px;height:500px;" >@if(!empty($datas)) {{ $datas['article_content'] }} @endif</textarea>
                                     </div>
                                 </div>
 
