@@ -62,11 +62,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章图片</label>
                                     <div class="col-sm-10">
-                                        <input type="file" class="form-control" name="photo" >
+                                        <input type="file" class="form-control" name="photo" onChange="preview(this)" id="file">
                                         @if(!empty($datas))
                                             <input type="hidden" name="photos" value="{{ $datas['article_img'] }}">
                                         @endif
-                                        <img @if(!empty($datas))src="/{{ $datas['article_img'] }}" @else src="" @endif alt="" style="width: 200px; height: 200px">
+                                        <img @if(!empty($datas)) src="/{{ $datas['article_img'] }}" @else src="" @endif alt="" style="width: 200px; height: 200px" id="previewimg">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -133,4 +133,32 @@
 </html>
 <script>
     var ue = UE.getEditor('editor');
+</script>
+<script type="text/javascript">
+    function preview(obj){
+        var file =  document.getElementById('file').value;//获取文件
+        var index = file.lastIndexOf('.'); //获取最后一位小数点
+        var extension =  file.substr(index +  1);
+        var arr = ['jpeg','png','jpg','gif'];
+        if (isInArray(arr,extension)) {
+            var img = document.getElementById("previewimg");
+            img.src = window.URL.createObjectURL(obj.files[0]);
+        } else {
+            alert('请选择正确的格式');
+        }
+
+    }
+    /**
+     * 使用循环的方式判断一个元素是否存在于一个数组中
+     * @param {Object} arr 数组
+     * @param {Object} value 元素值
+     */
+    function isInArray(arr,value){
+        for(var i = 0; i < arr.length; i++){
+            if(value === arr[i]){
+                return true;
+            }
+        }
+        return false;
+    }
 </script>
