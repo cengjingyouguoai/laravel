@@ -25,7 +25,7 @@ Route::group(['namespace' => 'Admin\Login'],function(){
     Route::post('admin/login/login_deal','LoginController@loginDeal');
 
     //后台退出
-    //Route::get('admin/login_out','LoginController@loginOut');
+    Route::get('admin/lgoin/login_out','LoginController@loginOut');
 
 });
 //后台首页
@@ -68,4 +68,10 @@ Route::group(['namespace' => 'Admin\Article','middleware' => 'check.login'],func
     Route::get('admin/article/article_delete','ArticleController@articleDelete');
     //恢复文章
     Route::get('admin/article/article_regain','ArticleController@articleRegain');
+});
+//管理员
+Route::group(['namespace' => 'Admin\Admin','middleware' => 'check.login'],function(){
+    //后台管理员列表
+    Route::get('admin/admin/admin_list','AdminController@adminList');
+
 });
