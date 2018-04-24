@@ -25,45 +25,113 @@ class ArticleController extends Controller
      */
     public function addArticle(Request $request)
     {
+        $id = $request->input('id');
+        $articleModel = new Article();
+        if ($id != '') {
+            $datas = $articleModel->getOneData($id);
+            $article_id = $id;
+        } else {
+            $datas = [];
+            $article_id = 0;
+        }
         $typeModel = new Type();
         $data = $typeModel->getTypeList();
-        return view('admin/article/add_article',['data' => $data]);
+        return view('admin/article/add_article',['data' => $data,'datas' => $datas,'article_id' => $article_id]);
     }
     /**
      * 处理增加文章
      */
     public function addArticleDeal(Request $request)
     {
-        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-            $title = trim($request->input('title'));//标题
-            $type = intval($request->input('type'));//类型
-            $sort = intval($request->input('sort'));//排序
-            $article = trim($request->input('article'));//文章内容
-            $photo = $request->file('photo');
-            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
-            $file_path =public_path('article/images');
-            $file = '/thumbnail-';
-            $thumbnail_file_path = $file_path . $file.$file_name;
-            $image = Image::make($photo)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnail_file_path);
-            $data = [
-                'article_title' => $title,
-                'article_type'  => $type,
-                'article_sort'  => $sort,
-                'article_content' => $article,
-                'article_img'     => 'article/images'.$file.$file_name,
-                'create_at'      => time(),
-                'update_at'      => time(),
-            ];
-            $articleModel = new Article();
-            $result = $articleModel->addData($data);
-            if ($result) {
-                return successJump('admin/article/article_list','添加成功');
+        $articleId = intval($request->input('article_id'));
+        if (empty($articleId)) {
+            if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+                $title = trim($request->input('title'));//标题
+                $type = intval($request->input('type'));//类型
+                $sort = intval($request->input('sort'));//排序
+                $article = trim($request->input('article'));//文章内容
+                $photo = $request->file('photo');
+                $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
+                $file_path =public_path('article/images');
+                $file = '/thumbnail-';
+                $thumbnail_file_path = $file_path . $file.$file_name;
+                $image = Image::make($photo)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnail_file_path);
+                $data = [
+                    'article_title' => $title,
+                    'article_type'  => $type,
+                    'article_sort'  => $sort,
+                    'article_content' => $article,
+                    'article_img'     => 'article/images'.$file.$file_name,
+                    'create_at'      => time(),
+                    'update_at'      => time(),
+                ];
+                $articleModel = new Article();
+                $result = $articleModel->addData($data);
+                if ($result) {
+                    return successJump('admin/article/article_list','添加成功');
+                } else {
+                    return errorJump('admin/article/add_article','添加失败');
+                }
             } else {
-                return errorJump('admin/article/add_article','添加失败');
+                return errorJump('admin/article/add_article','图片上传失败');
             }
         } else {
-            return errorJump('admin/article/add_article','图片上传失败');
+            if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+                $title = trim($request->input('title'));//标题
+                $type = intval($request->input('type'));//类型
+                $sort = intval($request->input('sort'));//排序
+                $article = trim($request->input('article'));//文章内容
+                $photo = $request->file('photo');
+                $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
+                $file_path =public_path('article/images');
+                $file = '/thumbnail-';
+                $thumbnail_file_path = $file_path . $file.$file_name;
+                $image = Image::make($photo)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnail_file_path);
+                $data = [
+                    'article_title' => $title,
+                    'article_type'  => $type,
+                    'article_sort'  => $sort,
+                    'article_content' => $article,
+                    'article_img'     => 'article/images'.$file.$file_name,
+                    'update_at'      => time(),
+                ];
+                $articleModel = new Article();
+                $result = $articleModel->updateStatus($data,$articleId);
+                if ($result) {
+                    return successJump('admin/article/article_list','修改成功');
+                } else {
+                    return errorJump('admin/article/add_article','修改失败');
+                }
+            } else {
+                $title = trim($request->input('title'));//标题
+                $type = intval($request->input('type'));//类型
+                $sort = intval($request->input('sort'));//排序
+                $article = trim($request->input('article'));//文章内容
+                $photo = trim($request->input('photos'));
+                $extension = pathinfo($photo)['extension'];
+                $file_name = uniqid().'.'.$extension;
+                $file_path =public_path('article/images');
+                $file = '/thumbnail-';
+                $thumbnail_file_path = $file_path . $file.$file_name;
+                $image = Image::make($photo)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnail_file_path);
+                $data = [
+                    'article_title' => $title,
+                    'article_type'  => $type,
+                    'article_sort'  => $sort,
+                    'article_content' => $article,
+                    'article_img'     => 'article/images'.$file.$file_name,
+                    'update_at'      => time(),
+                ];
+                $articleModel = new Article();
+                $result = $articleModel->updateStatus($data,$articleId);
+                if ($result) {
+                    return successJump('admin/article/article_list','修改成功');
+                } else {
+                    return errorJump('admin/article/add_article','修改失败');
+                }
+            }
         }
+
     }
 
     /**
