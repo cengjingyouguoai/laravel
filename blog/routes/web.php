@@ -91,4 +91,6 @@ Route::group(['namespace' => 'Admin\Title','middleware' => 'check.login'],functi
     Route::post('admin/title/title_edit_deal','TitleController@titleEditDeal');
     //座右铭删除
     Route::get('admin/title/title_edit_delete','TitleController@titleEditDelete');
+    //座右铭修改
+    Route::post('admin/title/title_edit_update','TitleController@titleEditUpdate');
 });
