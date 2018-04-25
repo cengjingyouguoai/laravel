@@ -36,8 +36,8 @@ class TitleController extends Controller
         if (mb_strlen($title) > 20 || mb_strlen($title) <= 0) {
             return errorJump('admin/title/title_edit','字数在1-20之间');
         }
-        if (mb_strlen($content) > 50 || mb_strlen($content) <= 0) {
-            return errorJump('admin/title/title_edit','字数在1-50之间');
+        if (mb_strlen($content) > 200 || mb_strlen($content) <= 0) {
+            return errorJump('admin/title/title_edit','字数在1-200之间');
         }
         $titleModel = new Title();
         $data = [
@@ -96,7 +96,7 @@ class TitleController extends Controller
             ];
             return json_encode($data);
         }
-        if (mb_strlen($content) > 50 || mb_strlen($content) <= 0) {
+        if (mb_strlen($content) > 200 || mb_strlen($content) <= 0) {
             $data = [
                 'code' => 500,
                 'msg'  => '失败'
