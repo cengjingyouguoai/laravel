@@ -73,5 +73,8 @@ Route::group(['namespace' => 'Admin\Article','middleware' => 'check.login'],func
 Route::group(['namespace' => 'Admin\Admin','middleware' => 'check.login'],function(){
     //后台管理员列表
     Route::get('admin/admin/admin_list','AdminController@adminList');
-
+    //后台管理员修改页面
+    Route::get('admin/admin/admin_update','AdminController@adminUpdate');
+    //后台管理员修改处理
+    Route::post('admin/admin/admin_update_deal','AdminController@adminUpdateDeal');
 });
