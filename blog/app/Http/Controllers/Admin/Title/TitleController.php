@@ -78,4 +78,51 @@ class TitleController extends Controller
             return errorJump('admin/title/title_edit','失败');
         }
     }
+
+    /**
+     * 修改
+     */
+    public function titleEditUpdate(Request $request)
+    {
+        $id = intval($request->input('id'));
+        $title = trim($request->input('title'));
+        $content = trim($request->input('content'));
+        $sort = intval($request->input('sort'));
+
+        if (mb_strlen($title) > 20 || mb_strlen($title) <= 0) {
+            $data = [
+              'code' => 500,
+              'msg'  => '失败'
+            ];
+            return json_encode($data);
+        }
+        if (mb_strlen($content) > 50 || mb_strlen($content) <= 0) {
+            $data = [
+                'code' => 500,
+                'msg'  => '失败'
+            ];
+            return json_encode($data);
+        }
+        $titleModel = new Title();
+        $datas = [
+            'title' => $title,
+            'content' => $content,
+            'sort'    => $sort,
+            'update_at' => time()
+        ];
+        $result = $titleModel->updateStatus($id,$datas);
+        if ($result) {
+            $data = [
+                'code' => 200,
+                'msg'  => '成功'
+            ];
+            return json_encode($data);
+        } else {
+            $data = [
+                'code' => 500,
+                'msg'  => '失败'
+            ];
+            return json_encode($data);
+        }
+    }
 }
