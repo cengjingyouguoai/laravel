@@ -52,7 +52,7 @@
                                     <td>{{ date('Y-m-d H:i:s',$val['login_time']) }}</td>
                                     <td>{{ date('Y-m-d H:i:s',$val['leave_time']) }}</td>
                                     <td>{{ $val['login_ip'] }}</td>
-                                    <td><button type="button" data-toggle="button" class="btn btn-primary btn-outline" >修改</button></td>
+                                    <td><button type="button" data-toggle="button" class="btn btn-primary btn-outline update" id="{{ $val['admin_id'] }}" >修改</button></td>
                                     @endforeach
                                     <tr>
 
@@ -103,4 +103,12 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function () {
+        $('.update').click(function () {
+            var id = $(this).attr('id');
+            window.location.href = "{{ url('admin/admin/admin_update') }}?id="+id;
+        })
+    })
+</script>
 
