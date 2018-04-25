@@ -28,9 +28,7 @@ class LoginController extends Controller
         ];
         $adminModel->updateData($data,$adminId);
         $request->session()->forget('username');
-        if (!$request->session()->exists('admin_id')) {
-            return  successJump('admin/login/login','已经退出');
-        }
+        return  successJump('admin/login/login','正在安全退出');
     }
 
     /**
