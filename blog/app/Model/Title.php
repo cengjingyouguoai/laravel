@@ -37,4 +37,17 @@ class Title extends Model
     {
         return DB::table($this->table)->where(['id' => $id])->update($data);
     }
+
+    /**
+     * 前台查询
+     */
+    public function getOneData()
+    {
+        $result = Title::where(['is_delete' => 0])->orderBy('sort','desc')->first();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            return $result;
+        }
+    }
 }
