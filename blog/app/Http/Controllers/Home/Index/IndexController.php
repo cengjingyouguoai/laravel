@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home\Index;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Type;
+use App\Model\Title;
 class IndexController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class IndexController extends Controller
     {
         $typeModel = new Type();
         $typeData = $typeModel->getTypeList();//首页分类
-        return view('home.index.index',['type_data' => $typeData]);
+        $titleModel = new Title();
+        $titleData = $titleModel->getOneData();
+        return view('home.index.index',['type_data' => $typeData,'title_data' => $titleData]);
     }
 
 }
