@@ -38,7 +38,7 @@ class AdminController extends Controller
         $adminModel = new Admin();
         $data = [
             'admin_password' => $passowrd,
-            'update_time'  => time()
+            'update_at'  => time()
         ];
         $result = $adminModel->updateData($data,$id);
         if ($result) {
