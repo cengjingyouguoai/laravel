@@ -133,35 +133,45 @@
     $(document).ready(function () {
         //发布
         $('.shows').click(function () {
-            var _this = $(this);
-            var id = _this.attr('id');
-            var status = _this.attr('status');
-            window.location.href = "{{ url('admin/article/article_publish') }}?id="+id+'&status='+status;
+            if (window.confirm('您确定要隐藏吗?')) {
+                var _this = $(this);
+                var id = _this.attr('id');
+                var status = _this.attr('status');
+                window.location.href = "{{ url('admin/article/article_publish') }}?id="+id+'&status='+status;
+            }
         });
         //发布
         $('.unshows').click(function () {
-            var _this = $(this);
-            var id = _this.attr('id');
-            var status = _this.attr('status');
-            window.location.href = "{{ url('admin/article/article_publish') }}?id="+id+'&status='+status;
+            if (window.confirm('您确定要发布吗?')) {
+                var _this = $(this);
+                var id = _this.attr('id');
+                var status = _this.attr('status');
+                window.location.href = "{{ url('admin/article/article_publish') }}?id="+id+'&status='+status;
+            }
         });
         //删除
         $('.del').click(function () {
-            var _this = $(this);
-            var id = _this.attr('id');
-            window.location.href = "{{ url('admin/article/article_delete') }}?id="+id;
+           if (window.confirm('您确定要删除吗?')) {
+               var _this = $(this);
+               var id = _this.attr('id');
+               window.location.href = "{{ url('admin/article/article_delete') }}?id="+id;
+           }
         });
         //恢复
         $('.regain').click(function () {
-            var _this = $(this);
-            var id = _this.attr('id');
-            window.location.href = "{{ url('admin/article/article_regain') }}?id="+id;
+            if (window.confirm('您确定要恢复吗?')) {
+                var _this = $(this);
+                var id = _this.attr('id');
+                window.location.href = "{{ url('admin/article/article_regain') }}?id="+id;
+            }
         });
         //修改
         $('.update').click(function () {
-            var _this = $(this);
-            var id = _this.attr('id');
-            window.location.href = "{{ url('admin/article/add_article') }}?id="+id;
+            if (window.confirm('您确定要修改吗?')){
+                var _this = $(this);
+                var id = _this.attr('id');
+                window.location.href = "{{ url('admin/article/add_article') }}?id="+id;
+            }
         })
     })
 </script>
