@@ -25,7 +25,7 @@ Route::group(['namespace' => 'Admin\Login'],function(){
     Route::post('admin/login/login_deal','LoginController@loginDeal');
 
     //后台退出
-    Route::get('admin/lgoin/login_out','LoginController@loginOut');
+    Route::get('admin/login/login_out','LoginController@loginOut');
 
 });
 //后台首页
