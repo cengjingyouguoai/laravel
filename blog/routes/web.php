@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//前台
+Route::group(['namespace' => 'Home\Index'],function(){
+    //首页
+    Route::get('/', 'IndexController@index');
 
+});
 
 //大后台登录
 Route::group(['namespace' => 'Admin\Login'],function(){
@@ -77,4 +79,16 @@ Route::group(['namespace' => 'Admin\Admin','middleware' => 'check.login'],functi
     Route::get('admin/admin/admin_update','AdminController@adminUpdate');
     //后台管理员修改处理
     Route::post('admin/admin/admin_update_deal','AdminController@adminUpdateDeal');
+});
+
+//后台小标题
+Route::group(['namespace' => 'Admin\Title','middleware' => 'check.login'],function(){
+    //座右铭列表页
+    Route::get('admin/title/title_list','TitleController@titleList');
+    //座右铭增加页面
+    Route::get('admin/title/title_edit','TitleController@titleEdit');
+    //座右铭增加处理
+    Route::post('admin/title/title_edit_deal','TitleController@titleEditDeal');
+    //座右铭删除
+    Route::get('admin/title/title_edit_delete','TitleController@titleEditDelete');
 });
