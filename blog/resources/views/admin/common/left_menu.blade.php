@@ -63,13 +63,13 @@
                 </ul>
             </li>
               <li>
-                 <a href=""><i class="fa fa-flask"></i> <span class="nav-label">价格阶梯配置</span><span class="fa arrow"></span></a>
+                 <a href=""><i class="fa fa-flask"></i> <span class="nav-label">首页座右铭</span><span class="fa arrow"></span></a>
                   <ul class="nav nav-second-level">
                       <li>
-                          <a href="">价格阶梯配置列表</a>
+                          <a href="{{ url('admin/title/title_list') }}">座右铭列表</a>
                       </li>
                       <li>
-                          <a href="">价格阶梯配置增加</a>
+                          <a href="{{ url('admin/title/title_edit') }}">座右铭增加</a>
                       </li>
                   </ul>
              </li>
