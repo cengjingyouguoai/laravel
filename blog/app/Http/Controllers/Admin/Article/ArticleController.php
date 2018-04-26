@@ -50,6 +50,7 @@ class ArticleController extends Controller
                 $type = intval($request->input('type'));//类型
                 $sort = intval($request->input('sort'));//排序
                 $article = trim($request->input('article'));//文章内容
+                $small_content = trim($request->input('small_content'));//文章简介
                 $photo = $request->file('photo');
                 $extension = $photo->getClientOriginalExtension();
                 $extensions = ['jpg','png','gif','jpeg'];
@@ -67,6 +68,7 @@ class ArticleController extends Controller
                     'article_sort'  => $sort,
                     'article_content' => $article,
                     'article_img'     => 'article/images'.$file.$file_name,
+                    'small_content'   => $small_content,
                     'create_at'      => time(),
                     'update_at'      => time(),
                 ];
@@ -86,6 +88,7 @@ class ArticleController extends Controller
                 $type = intval($request->input('type'));//类型
                 $sort = intval($request->input('sort'));//排序
                 $article = trim($request->input('article'));//文章内容
+                $small_content = trim($request->input('small_content'));//文章简介
                 $photo = $request->file('photo');
                 $extension = $photo->getClientOriginalExtension();
                 $extensions = ['jpg','png','gif','jpeg'];
@@ -103,6 +106,7 @@ class ArticleController extends Controller
                     'article_sort'  => $sort,
                     'article_content' => $article,
                     'article_img'     => 'article/images'.$file.$file_name,
+                    'small_content'   => $small_content,
                     'update_at'      => time(),
                 ];
                 $articleModel = new Article();
@@ -117,6 +121,7 @@ class ArticleController extends Controller
                 $type = intval($request->input('type'));//类型
                 $sort = intval($request->input('sort'));//排序
                 $article = trim($request->input('article'));//文章内容
+                $small_content = trim($request->input('small_content'));//文章简介
                 $photo = trim($request->input('photos'));
                 $extension = pathinfo($photo)['extension'];
                 $extensions = ['jpg','png','gif','jpeg'];
@@ -134,6 +139,7 @@ class ArticleController extends Controller
                     'article_sort'  => $sort,
                     'article_content' => $article,
                     'article_img'     => 'article/images'.$file.$file_name,
+                    'small_content'   => $small_content,
                     'update_at'      => time(),
                 ];
                 $articleModel = new Article();
