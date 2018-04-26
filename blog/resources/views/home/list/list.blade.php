@@ -25,15 +25,15 @@
                     <!--三角形-->
                     <div class="ci"></div>
                     <!--圆形-->
-                    <h2 class="title"><a href="/" target="_blank">{{ $val->article_title }}</a></h2>
+                    <h2 class="title"><a href="" target="_blank">{{ $val->article_title }}</a></h2>
                     <ul class="textinfo">
-                        <a href="/"><img src="/{{ $val->article_img }}" width="240px" height="160"></a>
-                        <p> 我希望我的爱情是这样的，相濡以沫，举案齐眉，平淡如水。我在岁月中找到他，依靠他，将一生交付给他。做他的妻子，他孩子的母亲，为他做饭，洗衣服，缝一颗掉了的纽扣。然后，我们一起在时光中变老。</p>
+                        <a href="javascript:void(0)"><img src="/{{ $val->article_img }}" width="240px" height="160"></a>
+                        <p>{{ $val->small_content }} </p>
                     </ul>
                     <ul class="details">
-                        <li class="likes"><a href="#">{{ $val->article_click }}</a></li>
-                        <li class="comments"><a href="#">34</a></li>
-                        <li class="icon-time"><a href="#">{{ date('Y-m-d H:i:s',$val->create_at) }}</a></li>
+                        <li class="likes"><a href="javascript:void(0)">{{ $val->article_click }}</a></li>
+                        <li class="comments"><a href="javascript:void(0)">{{ $val->article_yea }}</a></li>
+                        <li class="icon-time"><a href="javascript:void(0)">{{ date('Y-m-d H:i:s',$val->create_at) }}</a></li>
                     </ul>
                 </div>
                 <!--arrow_box end-->
