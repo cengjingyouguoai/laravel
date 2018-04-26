@@ -25,7 +25,7 @@
                     <!--三角形-->
                     <div class="ci"></div>
                     <!--圆形-->
-                    <h2 class="title"><a href="" target="_blank">{{ $val->article_title }}</a></h2>
+                    <h2 class="title"><a href="{{ url('article/article_list') }}?article_id={{ $val->article_id }}" target="_blank">{{ $val->article_title }}</a></h2>
                     <ul class="textinfo">
                         <a href="javascript:void(0)"><img src="/{{ $val->article_img }}" width="240px" height="160"></a>
                         <p>{{ $val->small_content }} </p>
