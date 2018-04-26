@@ -62,4 +62,12 @@ class Article extends Model
         return DB::table($this->table)->where(['article_id' => $id])->update($data);
     }
 
+    /*
+     * 通过文章分类查询文章
+     */
+    public function getArticleByTypeId($typeId)
+    {
+       return DB::table($this->table)->where(['is_publish' => 1, 'is_delete' => 0,'article_type' => $typeId])->paginate(15);
+    }
+
 }
