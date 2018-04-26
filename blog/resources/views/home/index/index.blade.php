@@ -12,16 +12,7 @@
     <![endif]-->
 </head>
 <body>
-<header>
-    <nav id="nav">
-        <ul>
-            @foreach($type_data as $key => $val)
-            <li><a href="/" >{{ $val['type_name'] }}</a></li>
-            @endforeach
-        </ul>
-        <script src="{{ URL::asset('home/js/silder.js') }}"></script><!--获取当前页导航 高亮显示标题-->
-    </nav>
-</header>
+@include('home.common.common_nav')
 <!--header end-->
 <div id="mainbody">
     <div class="info">
