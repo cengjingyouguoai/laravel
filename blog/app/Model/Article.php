@@ -70,7 +70,7 @@ class Article extends Model
        return DB::table($this->table)->where(['is_publish' => 1, 'is_delete' => 0,'article_type' => $typeId])->paginate(15);
     }
 
-    /**
+    /*
      * 前台首页文章
      */
     public function getArticleList()
@@ -83,4 +83,16 @@ class Article extends Model
             ->paginate(15);
     }
 
+    /*
+     * 前台通过文章id查询文章
+     */
+    public function getOneArticleList($articleId)
+    {
+        $result =Article::where(['article_id' => $articleId,'is_publish' => 1, 'is_delete' => 0])->first();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            return $result;
+        }
+    }
 }
