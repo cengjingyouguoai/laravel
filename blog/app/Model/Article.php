@@ -70,4 +70,17 @@ class Article extends Model
        return DB::table($this->table)->where(['is_publish' => 1, 'is_delete' => 0,'article_type' => $typeId])->paginate(15);
     }
 
+    /**
+     * 前台首页文章
+     */
+    public function getArticleList()
+    {
+        return DB::table($this->table)
+            ->join('type','article.article_type','=','type.type_id')
+            ->select('article.*','type.type_name','type.type_id')
+            ->where(['type.is_show' => 1,'type.is_delete' => 0,'article.is_publish' => 1,'article.is_delete' => 0])
+            ->orderBy('article_id','desc')
+            ->paginate(15);
+    }
+
 }
