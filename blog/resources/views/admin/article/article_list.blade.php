@@ -42,6 +42,7 @@
                                     <tr>
                                         <th>文章ID</th>
                                         <th>文章标题</th>
+                                        <th>文章简介</th>
                                         <th>文章分类</th>
                                         <th>文章排序</th>
                                         <th>文章图片</th>
@@ -58,7 +59,8 @@
                                             <tr>
                                         <td>{{ $val->article_id }}</td>
                                         <td><a href="{{ url('admin/article/article_details') }}?article_id={{ $val->article_id }}">{{ $val->article_title }}</a></td>
-                                        <td>{{ $val->type_name }}</td>
+                                        <td><textarea name="" id="" cols="30" rows="10" disabled>{{ $val->small_content }}</textarea></td>
+                                                <td>{{ $val->type_name }}</td>
                                             <td>{{ $val->article_sort }}</td>
                                             <td><img src="/{{ $val->article_img }}" alt="" style="width: 200px; height: 200px"></td>
                                             <td>{{ $val->article_click }}</td>
