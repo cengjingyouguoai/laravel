@@ -23,6 +23,15 @@ Route::group(['namespace' => 'Home\Type'],function(){
     Route::get('type/type_list', 'TypeController@typeList');
 });
 
+//前台文章详情
+Route::group(['namespace' => 'Home\Article'],function(){
+    //首页
+    Route::get('article/article_list', 'ArticleController@articleList');
+});
+
+
+
+
 //大后台登录
 Route::group(['namespace' => 'Admin\Login'],function(){
     //登录页面
