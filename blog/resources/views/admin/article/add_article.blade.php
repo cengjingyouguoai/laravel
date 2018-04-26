@@ -41,6 +41,13 @@
                                 </div>{{ csrf_field() }}
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label">文章简介</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="small_content"  @if(!empty($datas)) value=" {{ $datas['small_content'] }}"@endif >
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label">文章分类</label>
 
                                     <div class="col-sm-10">
