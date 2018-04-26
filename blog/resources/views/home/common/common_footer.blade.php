@@ -1,6 +1,6 @@
 <footer>
     <div class="footer-mid">
-        <div class="links">
+        {{--<div class="links">
             <h2>友情链接</h2>
             <ul>
                 <li><a href="/">杨青个人博客</a></li>
@@ -36,7 +36,7 @@
                 <dd>在 <a href="http://www.yangqq.com/jstt/bj/2013-06-18/285.html" class="title">如果个人博客网站再没有价值，你还会坚持吗？ </a>中评论：</dd>
                 <dd>博客色彩丰富，很是好看</dd>
             </dl>
-        </div>
+        </div>--}}
         <section class="flickr">
             <h2>摄影作品</h2>
             <ul>
