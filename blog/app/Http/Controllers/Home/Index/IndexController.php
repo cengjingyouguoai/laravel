@@ -19,8 +19,10 @@ class IndexController extends Controller
         $titleModel = new Title();
         $titleData = $titleModel->getOneData();
         $articleModel = new Article();
-        $articleData = $articleModel->getArticleList();
-        return view('home.index.index',['type_data' => $typeData,'title_data' => $titleData,'article_data' => $articleData]);
+        $articleData = $articleModel->getArticleList();//首页文章
+        $recommendData = $articleModel->recommendArticle();//推荐文章
+        $hotData = $articleModel->getHotArticle();
+        return view('home.index.index',['type_data' => $typeData,'title_data' => $titleData,'article_data' => $articleData,'recommend_data' => $recommendData,'hot_data' => $hotData]);
     }
 
 }
