@@ -15,7 +15,12 @@
 Route::group(['namespace' => 'Home\Index'],function(){
     //首页
     Route::get('/', 'IndexController@index');
+});
 
+//前台分类
+Route::group(['namespace' => 'Home\Type'],function(){
+    //首页
+    Route::get('type/type_list', 'TypeController@typeList');
 });
 
 //大后台登录
