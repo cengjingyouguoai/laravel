@@ -95,4 +95,30 @@ class Article extends Model
             return $result;
         }
     }
+
+    /*
+     * 前台首页推荐文章
+     */
+    public function recommendArticle()
+    {
+        $result = Article::where(['is_publish' => 1, 'is_delete' => 0])->select('article_id','article_title')->orderBy('article_id','asc')->limit(9)->get();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            return $result;
+        }
+    }
+
+    /*
+     * 前台首页热门文章
+     */
+    public function getHotArticle()
+    {
+        $result = Article::where(['is_publish' => 1, 'is_delete' => 0])->select('article_id','article_title')->orderBy('article_click','desc')->limit(9)->get();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            return $result;
+        }
+    }
 }
