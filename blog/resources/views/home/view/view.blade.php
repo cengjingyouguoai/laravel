@@ -53,7 +53,12 @@
             <div id="comment">
                 <h3><strong>发表评论:</strong></h3>
                 <p><span>内容：</span><textarea rows="10" cols="30" class="text-textarea"></textarea></p>
-                <p style="text-align:right;"><button class="btn" id="{{ $article_data['article_id'] }}">发表</button></p>
+                <p style="text-align:right;" id="com"><button class="btn" id="{{ $article_data['article_id'] }}">发表</button></p>
+            </div>
+            <div id="comments">
+                @foreach($comment_data as $key => $val)
+                <p><span>评论时间:{{ date('Y-m-d H:i:s',$val['create_at']) }}</span>&nbsp;&nbsp;{{ $val['comment_content'] }} {{--<button class="reply">回复</button>--}}</p>
+                @endforeach
             </div>
         </div>
         <!--bloglist end-->
@@ -136,6 +141,29 @@
         $('.btn').click(function () {
             var _this = $(this);
             var id = _this.attr('id');
+            var content = _this.parent().prev().children('textarea').val();
+            var lengths = content.length;
+            var _token = "{{ csrf_token() }}";
+            if (lengths <= 0 || lengths > 50) {
+                alert('评论字数控制在50以内');
+                return false;
+            }
+            $.ajax({
+                type:'POST',
+                data:'article_id='+id+'&content='+content+'&_token='+ _token,
+                url:"{{ url('comment/comment_add') }}",
+                dataType:'json',
+                success:function (msg) {
+                    if (msg.code == 200) {
+                        alert(msg.msg);
+                        window.location.reload();
+                    } else if (msg.code == 500) {
+                        alert(msg.msg);
+                    } else {
+                        alert(msg.msg);
+                    }
+                }
+            })
         })
     })
 </script>
