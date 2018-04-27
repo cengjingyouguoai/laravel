@@ -57,7 +57,16 @@
             </div>
             <div id="comments">
                 @foreach($comment_data as $key => $val)
-                <p><span>评论时间:{{ date('Y-m-d H:i:s',$val['create_at']) }}</span>&nbsp;&nbsp;{{ $val['comment_content'] }} {{--<button class="reply">回复</button>--}}</p>
+                <div><span>评论时间:{{ date('Y-m-d H:i:s',$val['create_at']) }}</span>&nbsp;&nbsp;{{ $val['comment_content'] }}
+                   @foreach($val['recomment'] as $k => $v)
+                        <p><span>回复时间:{{ date('Y-m-d H:i:s',$v['create_at']) }}</span>&nbsp;&nbsp;{{ $v['recomment_content'] }}</p>
+                   @endforeach
+                    <button class="reply" id="{{ $val['id'] }}">回复</button>
+                    <div class="pl-con" style="display:none;">
+                        <textarea cols="30" rows="10"></textarea>
+                        <p><button class="sub" id="{{ $val['article_id'] }}" ids="{{ $val['id'] }}">提交</button></p>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -152,6 +161,42 @@
                 type:'POST',
                 data:'article_id='+id+'&content='+content+'&_token='+ _token,
                 url:"{{ url('comment/comment_add') }}",
+                dataType:'json',
+                success:function (msg) {
+                    if (msg.code == 200) {
+                        alert(msg.msg);
+                        window.location.reload();
+                    } else if (msg.code == 500) {
+                        alert(msg.msg);
+                    } else {
+                        alert(msg.msg);
+                    }
+                }
+            })
+        });
+
+        //回复框实现
+        $('.reply').click(function () {
+            var _this = $(this);
+            _this.next().toggle('slow');//获取文本框
+        });
+        
+        //回复处理
+        $('.sub').click(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
+            var ids = _this.attr('ids');
+            var content = _this.parent().prev().val();
+            var lengths = content.length;
+            if (lengths <= 0 || lengths > 50) {
+                alert('回复字数控制在50以内');
+                return false;
+            }
+            var _token = "{{ csrf_token() }}";
+            $.ajax({
+                type:'POST',
+                data:'article_id='+id+'&content='+content+'&_token='+ _token+'&ids='+ids,
+                url:"{{ url('recomment/recomment_add') }}",
                 dataType:'json',
                 success:function (msg) {
                     if (msg.code == 200) {
