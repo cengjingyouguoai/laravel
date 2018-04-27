@@ -21,10 +21,10 @@
         </figure>
         <div class="card">
             <h1>我的名片</h1>
-            <p>网名：DanceSmile | 即步非烟</p>
-            <p>职业：Web前端设计师、网页设计</p>
-            <p>电话：13662012345</p>
-            <p>Email：dancesmiling@qq.com</p>
+            <p>网名：曾经you过爱</p>
+            <p>职业：自由人</p>
+            <p>电话：159******91</p>
+            <p>Email：********</p>
             <ul class="linkmore">
                 <li><a href="/" class="talk" title="给我留言"></a></li>
                 <li><a href="/" class="address" title="联系地址"></a></li>
