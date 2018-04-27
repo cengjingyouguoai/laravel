@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Article;
 use App\Model\Type;
+use App\Model\Yea;
 class ArticleController extends Controller
 {
     /**
@@ -19,6 +20,50 @@ class ArticleController extends Controller
        $articleData = $articleModel->getOneArticleList($articleId);
        $typeModel = new Type();
        $typeData = $typeModel->getTypeList();//首页分类
-       return view('home.view.view',['article_data' => $articleData,'type_data' => $typeData,]);
+       $hotData = $articleModel->getHotArticle();//热门点击
+       $newData = $articleModel->newArticle();//栏目更新
+       return view('home.view.view',['article_data' => $articleData,'type_data' => $typeData,'hot_data' => $hotData,'new_data' => $newData]);
+   }
+
+   /**
+    * 点赞
+    */
+   public function articleAddYea(Request $request)
+   {
+       $articleId = intval($request->input('article_id'));
+       $ip = $request->getClientIp();
+       $yeaModel = new Yea();
+       $result = $yeaModel->getData($articleId,$ip);
+       if ($result) {
+           $data = [
+             'code' => 500,
+             'message'  => '您已经点赞过啦!'
+           ];
+           return json_encode($data);
+       } else {
+            $datas = [
+              'article_id' => $articleId,
+              'yea_ip'     => $ip,
+              'create_at'  => time()
+            ];
+            $res = $yeaModel->addData($datas);
+            if ($res) {
+                $articleModel = new Article();
+                $results = $articleModel->addYea($articleId);
+                if ($results) {
+                    $data = [
+                        'code' => 200,
+                        'message'  => '谢谢您点赞!'
+                    ];
+                    return json_encode($data);
+                } else {
+                    $data = [
+                        'code' => 500,
+                        'message'  => '您已经点赞过啦!'
+                    ];
+                    return json_encode($data);
+                }
+            }
+       }
    }
 }
