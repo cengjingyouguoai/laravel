@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home\Article;
 
+use App\Model\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Article;
@@ -22,7 +23,9 @@ class ArticleController extends Controller
        $typeData = $typeModel->getTypeList();//首页分类
        $hotData = $articleModel->getHotArticle();//热门点击
        $newData = $articleModel->newArticle();//栏目更新
-       return view('home.view.view',['article_data' => $articleData,'type_data' => $typeData,'hot_data' => $hotData,'new_data' => $newData]);
+       $commentModel = new Comment();
+       $commentData = $commentModel->getCommentByArticleId($articleId);
+       return view('home.view.view',['article_data' => $articleData,'type_data' => $typeData,'hot_data' => $hotData,'new_data' => $newData,'comment_data' => $commentData]);
    }
 
    /**
