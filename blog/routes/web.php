@@ -27,6 +27,8 @@ Route::group(['namespace' => 'Home\Type'],function(){
 Route::group(['namespace' => 'Home\Article'],function(){
     //首页
     Route::get('article/article_list', 'ArticleController@articleList');
+    //点赞功能
+    Route::get('article/article_add_yea','ArticleController@articleAddYea');
 });
 
 
