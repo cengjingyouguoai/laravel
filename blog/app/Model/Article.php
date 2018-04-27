@@ -129,4 +129,25 @@ class Article extends Model
     {
         return DB::table($this->table)->increment('article_click');
     }
+
+    /**
+     *详情页栏目更新
+     */
+    public function newArticle()
+    {
+        $result = Article::where(['is_publish' => 1, 'is_delete' => 0])->select('article_id','article_title')->orderBy('article_id','desc')->limit(9)->get();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            return $result;
+        }
+    }
+
+    /**
+     * 增加点攒
+     */
+    public function addYea($articleId)
+    {
+        return DB::table($this->table)->where(['article_id' => $articleId])->increment('article_yea');
+    }
 }
