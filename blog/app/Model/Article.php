@@ -121,4 +121,12 @@ class Article extends Model
             return $result;
         }
     }
+
+    /**
+     * 增加点击量
+     */
+    public function addClick($articleId)
+    {
+        return DB::table($this->table)->increment('article_click');
+    }
 }
