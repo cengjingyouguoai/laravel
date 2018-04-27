@@ -21,7 +21,7 @@ class IndexController extends Controller
         $articleModel = new Article();
         $articleData = $articleModel->getArticleList();//首页文章
         $recommendData = $articleModel->recommendArticle();//推荐文章
-        $hotData = $articleModel->getHotArticle();
+        $hotData = $articleModel->getHotArticle();//热门点击
         return view('home.index.index',['type_data' => $typeData,'title_data' => $titleData,'article_data' => $articleData,'recommend_data' => $recommendData,'hot_data' => $hotData]);
     }
 
