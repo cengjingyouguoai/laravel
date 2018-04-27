@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Article;
 use App\Model\Type;
 use App\Model\Yea;
+use App\Model\Recomment;
 class ArticleController extends Controller
 {
     /**
@@ -25,6 +26,10 @@ class ArticleController extends Controller
        $newData = $articleModel->newArticle();//栏目更新
        $commentModel = new Comment();
        $commentData = $commentModel->getCommentByArticleId($articleId);
+       $recommentModel = new Recomment();
+       foreach ($commentData as $key => $val) {
+           $commentData[$key]['recomment'] = $recommentModel->getRecomment($val['id']);
+       }
        return view('home.view.view',['article_data' => $articleData,'type_data' => $typeData,'hot_data' => $hotData,'new_data' => $newData,'comment_data' => $commentData]);
    }
 
