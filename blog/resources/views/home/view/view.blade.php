@@ -34,7 +34,7 @@
             <div id="social">
                 <div class="social-main">
           <span class="like">
-          <a href="javascript:;" data-action="ding" data-id="11813" title="我赞" class="favorite done"><i class="fa fa-thumbs-up"></i>赞 <i class="count">{{  $article_data['article_yea']}}</i>
+          <a href="javascript:void(0)" data-action="ding" id="{{ $article_data['article_id'] }}"  title="我赞" class="favorite done yea"><i class="fa fa-thumbs-up"></i>赞 <i class="count">{{  $article_data['article_yea']}}</i>
           </a>
           </span>
                     <span class="shang-p">
@@ -79,15 +79,9 @@
             <div class="tuijian">
                 <h2>栏目更新</h2>
                 <ol>
-                    <li><span><strong>1</strong></span><a href="/">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
-                    <li><span><strong>2</strong></span><a href="/">励志人生-要做一个潇洒的女人</a></li>
-                    <li><span><strong>3</strong></span><a href="/">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
-                    <li><span><strong>4</strong></span><a href="/">Green绿色小清新的夏天-个人博客模板</a></li>
-                    <li><span><strong>5</strong></span><a href="/">女生清新个人博客网站模板</a></li>
-                    <li><span><strong>6</strong></span><a href="/">Wedding-婚礼主题、情人节网站模板</a></li>
-                    <li><span><strong>7</strong></span><a href="/">Column 三栏布局 个人网站模板</a></li>
-                    <li><span><strong>8</strong></span><a href="/">时间煮雨-个人网站模板</a></li>
-                    <li><span><strong>9</strong></span><a href="/">花气袭人是酒香—个人网站模板</a></li>
+                    @foreach($new_data as $key => $val)
+                        <li><span><a href="{{ url('article/article_list') }}?article_id={{ $val['article_id'] }}">{{ $val['article_title'] }}</a></span>{{--<a href="/"></a>--}}</li>
+                    @endforeach
                 </ol>
             </div>
             <div class="toppic">
@@ -107,15 +101,9 @@
             <div class="clicks">
                 <h2>热门点击</h2>
                 <ol>
-                    <li><span><a href="/">慢生活</a></span><a href="/">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
-                    <li><span><a href="/">爱情美文</a></span><a href="/">励志人生-要做一个潇洒的女人</a></li>
-                    <li><span><a href="/">慢生活</a></span><a href="/">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
-                    <li><span><a href="/">博客模板</a></span><a href="/">Green绿色小清新的夏天-个人博客模板</a></li>
-                    <li><span><a href="/">女生个人博客</a></span><a href="/">女生清新个人博客网站模板</a></li>
-                    <li><span><a href="/">Wedding</a></span><a href="/">Wedding-婚礼主题、情人节网站模板</a></li>
-                    <li><span><a href="/">三栏布局</a></span><a href="/">Column 三栏布局 个人网站模板</a></li>
-                    <li><span><a href="/">个人网站模板</a></span><a href="/">时间煮雨-个人网站模板</a></li>
-                    <li><span><a href="/">古典风格</a></span><a href="/">花气袭人是酒香—个人网站模板</a></li>
+                    @foreach($hot_data as $key => $val)
+                        <li><span><a href="{{ url('article/article_list') }}?article_id={{ $val['article_id'] }}">{{ $val['article_title'] }}</a></span>{{--<a href="/"></a>--}}</li>
+                    @endforeach
                 </ol>
             </div>
         </aside>
@@ -129,3 +117,25 @@
 <!-- 代码结束 -->
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        //点赞
+        $('.yea').click(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
+            $.ajax({
+                type:'GET',
+                data:'article_id='+id,
+                url:"{{ url('article/article_add_yea') }}",
+                dataType:'json',
+                success:function (msg) {
+                    if (msg.code == 200) {
+                        alert(msg.message);
+                    } else {
+                        alert(msg.message);
+                    }
+                }
+            })
+        })
+    })
+</script>
