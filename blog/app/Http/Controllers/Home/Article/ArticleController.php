@@ -15,6 +15,7 @@ class ArticleController extends Controller
    {
        $articleId = intval($request->input('article_id'));
        $articleModel = new Article();
+       $articleModel->addClick($articleId);//增加点击率
        $articleData = $articleModel->getOneArticleList($articleId);
        $typeModel = new Type();
        $typeData = $typeModel->getTypeList();//首页分类
