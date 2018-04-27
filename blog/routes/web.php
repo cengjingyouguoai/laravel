@@ -31,7 +31,11 @@ Route::group(['namespace' => 'Home\Article'],function(){
     Route::get('article/article_add_yea','ArticleController@articleAddYea');
 });
 
-
+//前台文章评论
+Route::group(['namespace' => 'Home\Comment'],function(){
+    //首页
+    Route::post('comment/comment_add', 'CommentController@commentAdd');
+});
 
 
 //大后台登录
