@@ -18,6 +18,8 @@ class TypeController extends Controller
         $article = $articleModel->getArticleByTypeId($id);
         $typeModel = new Type();
         $typeData = $typeModel->getTypeList();//首页分类
-        return view('home.list.list',['data' => $article,'type_data' => $typeData]);
+        $hotData = $articleModel->getHotArticle();
+        $recommendData = $articleModel->recommendArticle();//推荐文章
+        return view('home.list.list',['data' => $article,'type_data' => $typeData,'hot_data' => $hotData,'recommend_data' => $recommendData,]);
     }
 }
