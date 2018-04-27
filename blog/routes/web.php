@@ -37,6 +37,13 @@ Route::group(['namespace' => 'Home\Comment'],function(){
     Route::post('comment/comment_add', 'CommentController@commentAdd');
 });
 
+//前台文章回复
+Route::group(['namespace' => 'Home\Recomment'],function(){
+    //首页
+    Route::post('recomment/recomment_add', 'RecommentController@RecommentAdd');
+});
+
+
 
 //大后台登录
 Route::group(['namespace' => 'Admin\Login'],function(){
