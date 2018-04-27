@@ -50,16 +50,11 @@
             </div>
 
             <!-- 发表评论 -->
-           {{-- <div id="comment">
+            <div id="comment">
                 <h3><strong>发表评论:</strong></h3>
-                <p>
-                    <span>标题：</span>
-                    <input type="text" name="" id="" class="text">
-                </p>
                 <p><span>内容：</span><textarea rows="10" cols="30" class="text-textarea"></textarea></p>
-                <p style="text-align:right;"><button class="btn">发表</button></p>
-            </div>--}}
-
+                <p style="text-align:right;"><button class="btn" id="{{ $article_data['article_id'] }}">发表</button></p>
+            </div>
         </div>
         <!--bloglist end-->
         <aside>
@@ -70,10 +65,10 @@
             </div>
             <div class="sunnav">
                 <ul>
-                    <li><a href="/web/" target="_blank" title="网站建设">网站建设</a></li>
-                    <li><a href="/newshtml5/" target="_blank" title="HTML5 / CSS3">HTML5 / CSS3</a></li>
-                    <li><a href="/jstt/" target="_blank" title="技术探讨">技术探讨</a></li>
-                    <li><a href="/news/s/" target="_blank" title="慢生活">慢生活</a></li>
+                    <li><a href="/"  title=""></a>生活</li>
+                    <li><a href="/"  title=""></a>工作</li>
+                    <li><a href="/"  title=""></a>学习</li>
+                    <li><a href="/"  title=""></a>运动</li>
                 </ul>
             </div>
             <div class="tuijian">
@@ -87,13 +82,13 @@
             <div class="toppic">
                 <h2>图文并茂</h2>
                 <ul>
-                    <li><a href="/"><img src="images/k01.jpg">腐女不可怕，就怕腐女会画画！
+                    <li><a href="/"><img src="{{ URL::asset('home/images/k01.jpg') }}">腐女不可怕，就怕腐女会画画！
                             <p>伤不起</p>
                         </a></li>
-                    <li><a href="/"><img src="images/k02.jpg">问前任，你还爱我吗？无限戳中泪点~
+                    <li><a href="/"><img src="{{ URL::asset('home/images/k02.jpg') }}">问前任，你还爱我吗？无限戳中泪点~
                             <p>感兴趣</p>
                         </a></li>
-                    <li><a href="/"><img src="images/k03.jpg">世上所谓幸福，就是一个笨蛋遇到一个傻瓜。
+                    <li><a href="/"><img src="{{ URL::asset('home/images/k03.jpg') }}">世上所谓幸福，就是一个笨蛋遇到一个傻瓜。
                             <p>喜欢</p>
                         </a></li>
                 </ul>
@@ -136,6 +131,11 @@
                     }
                 }
             })
+        });
+        //评论
+        $('.btn').click(function () {
+            var _this = $(this);
+            var id = _this.attr('id');
         })
     })
 </script>
