@@ -121,3 +121,17 @@ Route::group(['namespace' => 'Admin\Title','middleware' => 'check.login'],functi
     //座右铭修改
     Route::post('admin/title/title_edit_update','TitleController@titleEditUpdate');
 });
+
+//后台个人名片
+Route::group(['namespace' => 'Admin\Card','middleware' => 'check.login'],function(){
+    //个人名片表页
+    Route::get('admin/card/card_list','CardController@cardList');
+    //个人名片增加页面
+    Route::get('admin/card/card_edit','CardController@cardEdit');
+    //座右铭增加处理
+  Route::any('admin/card/card_edit_deal','CardController@cardEditDeal');
+    /*  //座右铭删除
+  Route::get('admin/title/title_edit_delete','TitleController@titleEditDelete');
+  //座右铭修改
+  Route::post('admin/title/title_edit_update','TitleController@titleEditUpdate');*/
+});
