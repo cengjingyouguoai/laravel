@@ -21,10 +21,10 @@
         </figure>
         <div class="card">
             <h1>我的名片</h1>
-            <p>网名：曾经you过爱</p>
-            <p>职业：自由人</p>
-            <p>电话：159******91</p>
-            <p>Email：********</p>
+            <p>网名：{{ $card_data['blog_name'] }}</p>
+            <p>职业：{{ $card_data['blog_job'] }}</p>
+            <p>电话：{{ substr($card_data['blog_mobile'], 0, 3) . "****" . substr($card_data['blog_mobile'], strlen($card_data['blog_mobile']) - 4) }}</p>
+            <p>Email：{{ $card_data['blog_email'] }}</p>
             <ul class="linkmore">
                 <li><a href="/" class="talk" title="给我留言"></a></li>
                 <li><a href="/" class="address" title="联系地址"></a></li>
