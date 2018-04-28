@@ -1,14 +1,19 @@
 <footer>
     <div class="footer-mid">
-        {{--<div class="links">
+        <div class="links">
             <h2>友情链接</h2>
             <ul>
-                <li><a href="/">杨青个人博客</a></li>
-                <li><a href="http://www.3dst.com">3DST技术服务中心</a></li>
+                <li><a href="">csdn</a></li>
             </ul>
         </div>
         <div class="visitors">
-            <h2>最新评论</h2>
+            <dl>
+               <font color="red">你以为我贫穷、相貌平平就没有感情吗?我向你发誓，如果上帝赋予我财富和美貌，我会让你无法离开我，就像我现在无法离开你一样。虽然上帝没有这么做，可我们在精神上依然是平等的。</font>
+            </dl>
+            <dl>
+                <font color="red">人们的幸福并不取决于富有的程度，而是取决于心与心的关系和我们的生活观。这两点永远由我们自己作主，而这就是说，人们只要自己愿意，随时可得到幸福，任何人都不能妨碍他。</font>
+            </dl>
+            {{--<h2>最新评论</h2>
             <dl>
                 <dt><img src="{{ URL::asset('home/images/s8.jpg') }}">
                 <dt>
@@ -35,8 +40,8 @@
                 </dd>
                 <dd>在 <a href="http://www.yangqq.com/jstt/bj/2013-06-18/285.html" class="title">如果个人博客网站再没有价值，你还会坚持吗？ </a>中评论：</dd>
                 <dd>博客色彩丰富，很是好看</dd>
-            </dl>
-        </div>--}}
+            </dl>--}}
+        </div>
         <section class="flickr">
             <h2>摄影作品</h2>
             <ul>
