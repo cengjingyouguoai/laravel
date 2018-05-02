@@ -31,25 +31,26 @@
                 <div class="col-lg-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>订单总数</h5>
+                            <h5>发表文章总数</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins"></h1>
+                            <h1 class="no-margins">{{ $count_article }}</h1>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>订单总金额</h5>
+                            <h5>分类总数</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins"></h1>
+                            <h1 class="no-margins">{{ $count_type }}</h1>
                         </div>
                     </div>
                 </div>
 
             </div>
+
 
 
 
