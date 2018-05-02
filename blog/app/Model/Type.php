@@ -62,4 +62,12 @@ class Type extends Model
             return $result;
         }
     }
+
+    /**
+     * 分类总数
+     */
+    public function countType()
+    {
+        return DB::table($this->table)->where(['is_show' => 1,'is_delete' => 0])->count();
+    }
 }
