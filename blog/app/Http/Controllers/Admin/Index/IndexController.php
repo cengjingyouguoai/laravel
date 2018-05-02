@@ -25,6 +25,10 @@ class IndexController extends Controller
      */
     public function indexTwo()
     {
-        return view('admin.index.index_two');
+        $articleModel = new Article();
+        $countArticle = $articleModel->countArticle();
+        $typeModel = new Type();
+        $countType = $typeModel->countType();
+        return view('admin.index.index_two',['count_article' => $countArticle,'count_type' => $countType]);
     }
 }
