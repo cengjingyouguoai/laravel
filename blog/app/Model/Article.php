@@ -150,4 +150,12 @@ class Article extends Model
     {
         return DB::table($this->table)->where(['article_id' => $articleId])->increment('article_yea');
     }
+
+    /**
+     * 发表的文章总数
+     */
+    public function countArticle()
+    {
+        return DB::table($this->table)->where(['is_publish' => 1, 'is_delete' => 0])->count();
+    }
 }
